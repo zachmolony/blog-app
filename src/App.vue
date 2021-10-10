@@ -1,28 +1,51 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div id="app" class="container py-4">
+		<div id="nav">
+			<router-link to="/">Home</router-link> |
+			<router-link to="/about">About</router-link>
+		</div>
+		<router-view />
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapActions } from 'vuex'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+	name: 'App',
+	methods: {
+		...mapActions({
+			fetchPosts: 'blog/fetchPosts',
+			fetchComments: 'comments/fetchComments',
+		}),
+	},
+	created() {
+		this.fetchPosts()
+		this.fetchComments()
+	},
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	font-family: 'Kanit', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #2c3e50;
+	padding: 20px;
+	margin: auto;
+}
+
+#nav {
+	text-align: center;
+}
+
+#nav a {
+	font-weight: bold;
+	color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+	color: #42b983;
 }
 </style>
