@@ -1,7 +1,9 @@
 <template>
 	<figure class="media-left">
 		<p class="image is-64x64">
-			<img src="@/assets/logo.png" alt="Vue logo" />
+			<slot>
+				<img src="@/assets/logo.png" alt="Vue logo" />
+			</slot>
 		</p>
 	</figure>
 </template>

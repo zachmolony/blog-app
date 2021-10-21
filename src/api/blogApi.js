@@ -21,4 +21,15 @@ export default {
 			console.error(error)
 		}
 	},
+	async addComment(comment) {
+		try {
+			const response = await axios.post(
+				'https://jsonplaceholder.typicode.com/comments',
+				comment
+			)
+			return response.data
+		} catch (error) {
+			console.error(error)
+		}
+	},
 }
